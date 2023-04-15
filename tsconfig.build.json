@@ -1,0 +1,21 @@
+{
+  "extends": "./tsconfig.json",
+  "exclude": [
+    "test",
+    "dist",
+  ],
+  "compilerOptions": {
+    "outDir": "./dist",
+    "noEmit": false,
+    "module": "commonjs",
+    "pretty": true,
+    "paths": {
+      "@/*": [
+        "main/*"
+      ]
+    },
+  },
+  "include": [
+    "main"
+  ]
+}
