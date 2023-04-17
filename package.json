@@ -21,6 +21,7 @@
     },
     "appId": "com.electron.electron",
     "win": {
+      "icon":"./main/window/assets/logo/app_icon.ico",
       "target": "nsis"
     },
     "nsis": {

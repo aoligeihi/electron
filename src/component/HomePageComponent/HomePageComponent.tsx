@@ -149,7 +149,7 @@ export default observer(() => {
   /**
    * 获取统计数据网页的文字
    */
-  function getStatisticsText(str_:string) {
+  function getStatisticsText(str_: string) {
     let dataStr = ''; // 用来接收解析出来的字符串
     // let textList = $x('/html/body/div//div[@id="statistics"]//div[@id="pare"]//div[@class="view TRS_UEDITOR trs_paper_default trs_word"]//p/text()');
     let textList = parseDataWithXPath(str_, '/html/body/div[@id="pc_version"]/div[@class="Tongyxl w1180 clearfix"]/div[@id="bd"]/div[@id="pare"]//div[@class="view TRS_UEDITOR trs_paper_default trs_word"]//p/text()');
@@ -326,13 +326,14 @@ export default observer(() => {
 
   return (<>
     {/* {!state.ready && BootLoadingComponent} */}
-    {!state.ready ?<><h1>hhhhhhhhhhhhhhhhh</h1></>: <><div className={state.css.container} style={{ marginTop: "1em", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around" }}>
+    {!state.ready && BootLoadingComponent}
+    {state.ready && <><div className={state.css.container} style={{ marginTop: "1em", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around" }}>
       <ButtonGroup variant="contained" aria-label="outlined primary button group">
         <Button variant="contained"
           onClick={() => {
             state.searchData = 0;
             latestStatisticsData();
-          } }>
+          }}>
           最新统计信息
         </Button>
         <Button variant="contained">
@@ -340,7 +341,7 @@ export default observer(() => {
         </Button>
         <Button variant="contained" onClick={() => {
           state.dialogOpen = true;
-        } }>
+        }}>
           {/* <a style={{ textDecoration: "none", outline: "none", color: "#ffffff" }} href="/statisticsPage"  >解析</a> */}
           查看统计页面数据
         </Button>
@@ -359,14 +360,14 @@ export default observer(() => {
       <div className="form-group flex flex-row items-center" style={{ width: "30%" }}>
         <select className="form-control" id="exampleFormControlSelect1" onChange={(t) => {
           state.searchData = parseInt(t.target.value);
-        } }>
+        }}>
           {state.searchList.map((s: any, index) => <option value={index} id={s.id} selected={state.searchData === index}>{s.data}</option>
           )}
         </select>
         <Fab color="primary" size={"small"} aria-label="add" style={{ marginLeft: "1em" }} onClick={() => {
           latestStatisticsData();
           parseStr("");
-        } }>
+        }}>
           <SearchIcon />
         </Fab>
       </div>
@@ -416,7 +417,7 @@ export default observer(() => {
         <div>
         </div>
       </div><Dialog open={state.dialogOpen} fullWidth={true} maxWidth={'md'}
-        onClose={() => { state.dialogOpen = false; } } aria-labelledby="form-dialog-title">
+        onClose={() => { state.dialogOpen = false; }} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">统计页面数据</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -433,18 +434,18 @@ export default observer(() => {
             defaultValue={state.staticText}
             onChange={(e) => {
               state.staticText = e.target.value;
-            } } />
+            }} />
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => { state.dialogOpen = false; } } color="primary">
+          <Button onClick={() => { state.dialogOpen = false; }} color="primary">
             关闭
           </Button>
-          <Button onClick={() => { } } color="primary">
+          <Button onClick={() => { }} color="primary">
             确定
           </Button>
         </DialogActions>
       </Dialog></>
     }
-    
+
   </>);
 })
